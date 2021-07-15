@@ -1,0 +1,27 @@
+.login__save-button {
+  width: 100%;
+  min-height: 46px;
+  background-color: #fff;
+  border-radius: 2px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  border-radius: 2px;
+}
+
+.login__save-button:hover {
+  opacity: .8;
+}
+
+.login__save-button:active {
+  opacity: .9;
+}
+
+@media screen and (min-width: 1024px) {
+  .login__save-button {
+    font-size: 18px;
+    line-height: calc(22 / 18);
+  }
+}

@@ -1,0 +1,9 @@
+.login__info_size_small {
+    width: 200px;
+}
+
+@media screen and (min-width: 1024px) {
+  .login__info_size_small {
+    width: 358px;
+  }
+}
