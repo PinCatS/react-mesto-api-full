@@ -1,0 +1,26 @@
+.login__input {
+  background-color: transparent;
+  border-bottom: 2px solid #ccc;
+  width: 100%;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.login__input:focus {
+  outline: none;
+}
+
+.login__input:first-of-type {
+  margin-top: 0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active
+{
+  -webkit-text-fill-color: #fff !important;
+  -webkit-box-shadow: 0 0 0 30px #000 inset !important;
+}

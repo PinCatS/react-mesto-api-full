@@ -1,0 +1,11 @@
+.header__main_type_bordered {
+  border-bottom: 1px solid rgba(84, 84, 84, .7);
+  padding-bottom: 28px;
+}
+
+@media screen and (min-width: 640px) {
+  .header__main_type_bordered {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }  
+}

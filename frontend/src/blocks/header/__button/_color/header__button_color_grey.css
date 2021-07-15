@@ -1,0 +1,7 @@
+.header__button_color_grey {
+    opacity: .6;
+}
+
+.header__button_color_grey:hover {
+    opacity: 1;
+}

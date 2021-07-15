@@ -1,0 +1,6 @@
+@media screen and (max-width: 640px) {
+  .popup__close-button_location_topcenter {
+    top: -50px;
+    left: 45%;
+  }
+}
