@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorsHandler = require('./middlewares/errors-handler');
+const cors = require('./middlewares/cors');
 const {
   login,
   createUser,
@@ -30,6 +31,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(requestLogger);
+
+app.use(cors);
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
