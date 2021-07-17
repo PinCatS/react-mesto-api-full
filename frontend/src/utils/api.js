@@ -90,8 +90,7 @@ class Api {
 }
 
 /* Create and export API */
-export default new Api('https://mesto.nomoreparties.co/v1/cohort-20/', {
-    authorization: '9a69937c-ba0b-400f-a7bf-af3d18fbfaea',
+export default new Api('https://api.mesto-praktikum.nomoredomains.monster/', {
     'content-type': 'application/json'
 });
   
