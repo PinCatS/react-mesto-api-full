@@ -24,6 +24,8 @@ const getUser = (req, res, next) => {
 const getProfile = (req, res, next) => {
   const { _id } = req.user;
 
+  console.log(res.header);
+
   User.findById(_id)
     .orFail(new NotFoundError('Пользователь не найден'))
     .then((user) => res.send({ data: user }))

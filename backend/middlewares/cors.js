@@ -1,10 +1,10 @@
 const allowedCors = [
   'https://mesto-praktikum.nomoredomains.work',
   'http://mesto-praktikum.nomoredomains.work',
-  'localhost:3000'
+  'localhost:3000',
 ];
 
-const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
+const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 
 module.exports = (req, res, next) => {
   const { origin } = req.headers;
@@ -13,6 +13,7 @@ module.exports = (req, res, next) => {
 
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Credentials', true);
   }
 
   if (method === 'OPTIONS') {
@@ -20,5 +21,6 @@ module.exports = (req, res, next) => {
     res.header('Access-Control-Allow-Headers', requestHeaders);
   }
 
+  console.log('Headers:', res.header);
   next();
 };
