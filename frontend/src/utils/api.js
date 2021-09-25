@@ -16,21 +16,21 @@ class Api {
     }
   
     getCards() {
-      return fetch(`${this._url}cards`, {
+      return fetch(`${this._url}/cards`, {
         headers: this._headers
       })
       .then(this._onResponse);
     }
   
     getUserInfo() {
-      return fetch(`${this._url}users/me`, {
+      return fetch(`${this._url}/users/me`, {
         headers: this._headers
       })
       .then(this._onResponse)
     }
   
     updateAvatar(link) {
-      return fetch(`${this._url}users/me/avatar`, {
+      return fetch(`${this._url}/users/me/avatar`, {
         method: 'PATCH',
         headers: this._headers,
         body: JSON.stringify({avatar: link})
@@ -39,7 +39,7 @@ class Api {
     }
   
     setProfile(name, about) {
-      return fetch(`${this._url}users/me`, {
+      return fetch(`${this._url}/users/me`, {
         method: 'PATCH',
         headers: this._headers,
         body: JSON.stringify({name, about})
@@ -48,7 +48,7 @@ class Api {
     }
   
     addCard(name, link) {
-      return fetch(`${this._url}cards`, {
+      return fetch(`${this._url}/cards`, {
         method: 'POST',
         headers: this._headers,
         body: JSON.stringify({name, link})
@@ -57,7 +57,7 @@ class Api {
     }
   
     deleteCard(cardId) {
-      return fetch(`${this._url}cards/${cardId}`, {
+      return fetch(`${this._url}/cards/${cardId}`, {
         method: 'DELETE',
         headers: this._headers
       })
@@ -65,7 +65,7 @@ class Api {
     }
   
     setLike(cardId) {
-      return fetch(`${this._url}cards/likes/${cardId}`, {
+      return fetch(`${this._url}/cards/likes/${cardId}`, {
         method: 'PUT',
         headers: this._headers
       })
@@ -73,7 +73,7 @@ class Api {
     }
   
     removeLike(cardId) {
-      return fetch(`${this._url}cards/likes/${cardId}`, {
+      return fetch(`${this._url}/cards/likes/${cardId}`, {
         method: 'DELETE',
         headers: this._headers
       })
@@ -90,7 +90,7 @@ class Api {
 }
 
 /* Create and export API */
-export default new Api('https://api.mesto-praktikum.nomoredomains.monster/', {
+export default new Api('https://api.mesto-praktikum.nomoredomains.monster', {
     'content-type': 'application/json'
 });
   

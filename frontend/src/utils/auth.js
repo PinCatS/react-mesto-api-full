@@ -45,6 +45,6 @@ class Auth {
 }
 
 /* Create and export Auth */
-export default new Auth('https://auth.nomoreparties.co', {
+export default new Auth('https://api.mesto-praktikum.nomoredomains.monster', {
     'content-type': 'application/json'
 });
