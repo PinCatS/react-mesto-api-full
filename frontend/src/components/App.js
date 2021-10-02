@@ -45,22 +45,24 @@ function App() {
             setUserEmail(res.data.email);
             setLoggedIn(true);
             history.push('/');
-          })
+          });
     }
   }
 
   useEffect(() => {
     checkToken();
 
-    api
-      .getUserInfo()
-      .then((user) => setCurrentUser(user))
-      .catch(err => onRequestError(err, 'Failed to get user info.'));
+    if (loggedIn) {
+      api
+        .getUserInfo()
+        .then(({data: user}) => setCurrentUser(user))
+        .catch(err => onRequestError(err, 'Failed to get user info.'));
     
-    api
-      .getCards()
-      .then(cards => setCards(cards))
-      .catch(err => onRequestError(err, 'Failed to get cards.'));
+      api
+        .getCards()
+        .then(({data: cards}) => setCards(cards))
+        .catch(err => onRequestError(err, 'Failed to get cards.'));
+    }
   }, []);
 
   const onEditProfile = () => {
@@ -80,10 +82,10 @@ function App() {
   }
 
   const handleCardLike = (card) => {
-    const isLiked = card.likes.some(like => like._id === currentUser._id);
+    const isLiked = card.likes.some(likeId => likeId === currentUser._id);
     
     api.changeLikeCardStatus(card._id, isLiked)
-        .then((newCard) => {
+        .then(({data: newCard}) => {
             setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
         })
         .catch(err => onRequestError(err, 'Failed to change like status.'));
@@ -122,7 +124,7 @@ function App() {
     setIsDoingWork(true);
     api
       .setProfile(name, about)
-      .then((newUser) => {
+      .then(({data: newUser}) => {
         setCurrentUser(newUser);
         closeAllPopups();
       })
@@ -136,7 +138,7 @@ function App() {
     setIsDoingWork(true);
     api
       .updateAvatar(link)
-      .then((newUser) => {
+      .then(({data: newUser}) => {
         setCurrentUser(newUser);
         closeAllPopups();
       })
@@ -150,7 +152,7 @@ function App() {
     setIsDoingWork(true);
     api
       .addCard(name, link)
-      .then(newCard => {
+      .then(({data: newCard}) => {
         setCards([newCard, ...cards]); 
         closeAllPopups();
       })
@@ -177,6 +179,17 @@ function App() {
       Auth.getContent(jwt)
           .then(res => {
             setUserEmail(res.data.email);
+
+            api
+            .getUserInfo()
+            .then(({data: user}) => setCurrentUser(user))
+            .catch(err => onRequestError(err, 'Failed to get user info.'));
+        
+            api
+              .getCards()
+              .then(({data: cards}) => setCards(cards))
+              .catch(err => onRequestError(err, 'Failed to get cards.'));
+
             setLoggedIn(true);
             history.push('/');
           })

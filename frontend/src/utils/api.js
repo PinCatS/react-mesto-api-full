@@ -17,14 +17,20 @@ class Api {
   
     getCards() {
       return fetch(`${this._url}/cards`, {
-        headers: this._headers
+        headers: { 
+          ...this._headers,
+          'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        }
       })
       .then(this._onResponse);
     }
   
     getUserInfo() {
       return fetch(`${this._url}/users/me`, {
-        headers: this._headers
+        headers: { 
+          ...this._headers,
+          'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        }
       })
       .then(this._onResponse)
     }
@@ -32,7 +38,10 @@ class Api {
     updateAvatar(link) {
       return fetch(`${this._url}/users/me/avatar`, {
         method: 'PATCH',
-        headers: this._headers,
+        headers: { 
+          ...this._headers,
+          'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        },
         body: JSON.stringify({avatar: link})
       })
       .then(this._onResponse);
@@ -41,7 +50,10 @@ class Api {
     setProfile(name, about) {
       return fetch(`${this._url}/users/me`, {
         method: 'PATCH',
-        headers: this._headers,
+        headers: { 
+          ...this._headers,
+          'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        },
         body: JSON.stringify({name, about})
       })
       .then(this._onResponse);
@@ -50,7 +62,10 @@ class Api {
     addCard(name, link) {
       return fetch(`${this._url}/cards`, {
         method: 'POST',
-        headers: this._headers,
+        headers: { 
+          ...this._headers,
+          'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        },
         body: JSON.stringify({name, link})
       })
       .then(this._onResponse);
@@ -59,23 +74,32 @@ class Api {
     deleteCard(cardId) {
       return fetch(`${this._url}/cards/${cardId}`, {
         method: 'DELETE',
-        headers: this._headers
+        headers: { 
+          ...this._headers,
+          'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        },
       })
       .then(this._onResponse);
     }
   
     setLike(cardId) {
-      return fetch(`${this._url}/cards/likes/${cardId}`, {
+      return fetch(`${this._url}/cards/${cardId}/likes`, {
         method: 'PUT',
-        headers: this._headers
+        headers: { 
+          ...this._headers,
+          'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        }
       })
       .then(this._onResponse);
     }
   
     removeLike(cardId) {
-      return fetch(`${this._url}/cards/likes/${cardId}`, {
+      return fetch(`${this._url}/cards/${cardId}/likes`, {
         method: 'DELETE',
-        headers: this._headers
+        headers: { 
+          ...this._headers,
+          'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        },
       })
       .then(this._onResponse);
     }
@@ -90,7 +114,9 @@ class Api {
 }
 
 /* Create and export API */
-export default new Api('https://api.mesto-praktikum.nomoredomains.monster', {
-    'content-type': 'application/json'
-});
-  
+// export default new Api('https://api.mesto-praktikum.nomoredomains.monster', {
+//     'content-type': 'application/json'
+// });
+export default new Api('http://localhost:3000', {
+  'content-type': 'application/json'
+});  

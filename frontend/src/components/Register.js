@@ -10,7 +10,6 @@ function Register({onSuccess, onFailure}) {
   const handleSubmit = ({email, password}) => {
     Auth.signup(email, password)
         .then(res => {
-          console.log('registered');
           history.push('/sign-in');
           onSuccess();
         })
