@@ -4,7 +4,7 @@ const AuthError = require('../errors/auth-error');
 const AUTH_ERROR_MESSAGE = 'Ошибка авторизации';
 
 module.exports = (req, res, next) => {
-  const authorization = req.cookies.jwt;
+  const authorization = req.header('Authorization');
 
   try {
     if (!authorization || !authorization.startsWith('Bearer ')) {

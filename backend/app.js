@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const express = require('express');
 const helmet = require('helmet');
 const { celebrate, Joi, errors } = require('celebrate');
-const cookieParser = require('cookie-parser');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorsHandler = require('./middlewares/errors-handler');
@@ -53,7 +52,6 @@ app.post('/signup', celebrate({
   }),
 }), createUser);
 
-app.use(cookieParser());
 app.use(auth);
 
 app.use('/users', require('./routes/users'));
