@@ -5,8 +5,6 @@ const AuthError = require('../errors/auth-error');
 const User = require('../models/user');
 const { onError } = require('../utils');
 
-const MAX_AGE_WEEK = 3600000 * 24 * 7;
-
 const getUsers = (req, res, next) => {
   User.find({})
     .then((users) => res.send({ data: users }))
@@ -70,12 +68,7 @@ const login = (req, res, next) => {
         { expiresIn: '1w' },
       );
 
-      res.cookie('jwt', `Bearer ${token}`, {
-        maxAge: MAX_AGE_WEEK,
-        httpOnly: true,
-      });
-
-      res.send({ _id: user._id });
+      res.send({ token });
     })
     .catch((err) => next(new AuthError(err.message)));
 };
