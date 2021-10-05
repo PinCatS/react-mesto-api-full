@@ -18,7 +18,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "npm run build && scp -r ./build/* pincats@84.201.178.140:/home/pincats/mesto-frontend" 
+    "deploy": "npm run build && scp -r ./build/* pincats@130.193.42.30:/home/pincats/mesto-frontend" 
   },
   "eslintConfig": {
     "extends": [
