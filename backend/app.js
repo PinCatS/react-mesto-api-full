@@ -1,3 +1,4 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const express = require('express');
 const helmet = require('helmet');
@@ -32,6 +33,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(requestLogger);
 
 app.use(cors);
+
+/** #begin for crash-test */
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+/** #end for crash-test */
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
