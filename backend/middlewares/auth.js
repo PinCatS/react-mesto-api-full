@@ -1,3 +1,4 @@
+const { NODE_ENV, JWT_SECRET } = process.env;
 const jwt = require('jsonwebtoken');
 const AuthError = require('../errors/auth-error');
 
@@ -16,7 +17,8 @@ module.exports = (req, res, next) => {
     let payload;
 
     try {
-      payload = jwt.verify(token, 'some-secret-key');
+      const secretKey = NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret';
+      payload = jwt.verify(token, secretKey);
     } catch (err) {
       throw new AuthError(AUTH_ERROR_MESSAGE);
     }

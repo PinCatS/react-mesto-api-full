@@ -40,29 +40,36 @@ function App() {
   const checkToken = () => {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
-      Auth.getContent(jwt)
+      return Auth.getContent(jwt)
           .then(res => {
             setUserEmail(res.data.email);
             setLoggedIn(true);
-            history.push('/');
+            return true;
           });
+    } else {
+      return Promise.resolve(false);
     }
   }
 
   useEffect(() => {
-    checkToken();
-
-    if (loggedIn) {
-      api
+    checkToken().then(loggedIn => {
+      if (loggedIn) {
+        api
         .getUserInfo()
-        .then(({data: user}) => setCurrentUser(user))
+        .then(({data: user}) => {
+          console.log('user:', user);
+          setCurrentUser(user)
+        })
         .catch(err => onRequestError(err, 'Failed to get user info.'));
     
-      api
-        .getCards()
-        .then(({data: cards}) => setCards(cards))
-        .catch(err => onRequestError(err, 'Failed to get cards.'));
-    }
+        api
+          .getCards()
+          .then(({data: cards}) => setCards(cards))
+          .catch(err => onRequestError(err, 'Failed to get cards.'));
+  
+        history.push('/');
+      }
+    });
   }, []);
 
   const onEditProfile = () => {
