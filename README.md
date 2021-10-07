@@ -3,7 +3,8 @@
   
 ## How to reach website
 
-Link to website: [Mesto](https://mesto-praktikum.nomoredomains.work/)
+**Link to website:** [Mesto](https://mesto-praktikum.nomoredomains.work/)
 
-Public IP: 130.193.42.30 
-Fontend domain: mesto-praktikum.nomoredomains.work
+**Public IP:** 130.193.42.30 
+
+**Fontend domain:** mesto-praktikum.nomoredomains.work
