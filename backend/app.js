@@ -11,6 +11,7 @@ const {
   login,
   createUser,
 } = require('./controllers/users');
+const { urlValidator } = require('./utils');
 
 const app = express();
 
@@ -55,9 +56,7 @@ app.post('/signup', celebrate({
     password: Joi.string().required().min(8),
     name: Joi.string().min(2).max(30),
     about: Joi.string().min(2).max(30),
-    avatar: Joi.string().uri({
-      scheme: ['http', 'https'],
-    }),
+    avatar: Joi.string().custom(urlValidator),
   }),
 }), createUser);
 
