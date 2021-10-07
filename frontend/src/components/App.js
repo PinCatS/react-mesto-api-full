@@ -57,7 +57,6 @@ function App() {
         api
         .getUserInfo()
         .then(({data: user}) => {
-          console.log('user:', user);
           setCurrentUser(user)
         })
         .catch(err => onRequestError(err, 'Failed to get user info.'));
@@ -171,7 +170,7 @@ function App() {
 
   const handleRegisterSuccess = () => {
     setTooltipImage(successImage);
-    setTooltipMessage('Вы успещно зарегистрировались!');
+    setTooltipMessage('Вы успешно зарегистрировались!');
     setIsTooltipPopupOpen(true);
   }
 
