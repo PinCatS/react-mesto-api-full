@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
-const { linkValidationPattern } = require('../utils');
 
 const userSchema = mongoose.Schema({
   email: {
@@ -9,9 +8,7 @@ const userSchema = mongoose.Schema({
     required: true,
     unique: true,
     validate: {
-      validator(v) {
-        return validator.isEmail(v);
-      },
+      validator: (v) => validator.isEmail(v),
       message: 'Не правильный адрес почты',
     },
   },
@@ -37,9 +34,7 @@ const userSchema = mongoose.Schema({
     type: String,
     default: 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
     validate: {
-      validator(v) {
-        return linkValidationPattern.test(v);
-      },
+      validator: (v) => validator.isURL(v, { require_protocol: true }),
       message: 'Не правильная ссылка на аватар',
     },
   },
