@@ -117,6 +117,3 @@ class Api {
 export default new Api('https://api.mesto-praktikum.nomoredomains.monster', {
     'content-type': 'application/json'
 });
-// export default new Api('http://localhost:3000', {
-//   'content-type': 'application/json'
-// });  

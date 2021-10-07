@@ -48,6 +48,3 @@ class Auth {
 export default new Auth('https://api.mesto-praktikum.nomoredomains.monster', {
     'content-type': 'application/json'
 });
-// export default new Auth('http://localhost:3000', {
-//     'content-type': 'application/json'
-// });

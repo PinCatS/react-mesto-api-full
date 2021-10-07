@@ -27,7 +27,7 @@ function AddPlacePopup({isOpen, onClose, onCardAdd, isLoading}) {
       setLink(value);
 
       if (!value) {
-        setUrlInputErrMessage('Обзазательное поле.');
+        setUrlInputErrMessage('Обязательное поле.');
       } else if (!/^(https?:\/\/)/.test(value)) {
         setUrlInputErrMessage('Не верный формат ссылки.');
       } else {
